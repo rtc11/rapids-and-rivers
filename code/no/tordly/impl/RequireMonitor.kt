@@ -4,9 +4,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import no.tordly.kafka.KafkaRapid
-import no.tordly.kafka.KafkaRiverFlow
+import no.tordly.kafka.KafkaFactory
 import no.tordly.kafka.KafkaRapidProducer
+import no.tordly.kafka.KafkaRiverFlow
 import no.tordly.rapidsandrivers.Packet
 import no.tordly.rapidsandrivers.PacketFilter
 import no.tordly.rapidsandrivers.Problems
@@ -46,7 +46,7 @@ object HandleSøknad : KafkaRiverFlow() {
     }
 }
 
-object Producer : KafkaRapidProducer(KafkaRapid()) {
+object Producer : KafkaRapidProducer(KafkaFactory()) {
     init {
         runBlocking {
             launch {

@@ -15,28 +15,13 @@ import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
 import java.util.*
 
-data class KafkaConfig(
-    val brokers: String,
-    val topic: String,
-    val app: String,
-    val security: Boolean,
-    val truststorePath: String,
-    val keystorePath: String,
-    val credstorePsw: String,
-) {
-    companion object {
-        fun localRapid(app: String = UUID.randomUUID().toString()) =
-            KafkaConfig("localhost:9092", "rapid", app, false, "", "", "")
-    }
-}
-
 interface Kafka {
     fun createConsumer(): Consumer<String, MutableMap<String, *>>
     fun createProducer(): Producer<String, MutableMap<String, *>>
     val topic: String
 }
 
-class KafkaRapid(private val config: KafkaConfig = KafkaConfig.localRapid()) : Kafka {
+class KafkaFactory(private val config: KafkaConfig = KafkaConfig.localRapid()) : Kafka {
     override val topic: String = config.topic
 
     override fun createConsumer(): Consumer<String, MutableMap<String, *>> =

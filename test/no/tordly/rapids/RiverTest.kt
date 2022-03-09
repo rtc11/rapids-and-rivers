@@ -5,7 +5,7 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import no.tordly.kafka.Kafka
-import no.tordly.kafka.KafkaRapid
+import no.tordly.kafka.KafkaFactory
 import no.tordly.kafka.KafkaRiverFlow
 import no.tordly.kafka.KafkaRapidProducer
 import no.tordly.rapidsandrivers.Packet
@@ -295,7 +295,7 @@ internal class RiverTest {
 
     private class TestRapid(override val topic: String = "hello-rapid") : Kafka {
         override fun createConsumer() = consumer
-        override fun createProducer() = MockProducer(true, StringSerializer(), KafkaRapid.MapSerializer)
+        override fun createProducer() = MockProducer(true, StringSerializer(), KafkaFactory.MapSerializer)
 
         private val consumer = RapidMockConsumer()
 

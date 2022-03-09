@@ -10,7 +10,7 @@ import no.tordly.rapidsandrivers.Problems
 import java.time.Duration
 
 abstract class KafkaRiverFlow(
-    private val kafka: Kafka = KafkaRapid(),
+    private val kafka: Kafka = KafkaFactory(),
     context: CoroutineDispatcher = Dispatchers.Default
 ) : AutoCloseable {
     private val rapidConsumer = kafka.createConsumer()
