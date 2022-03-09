@@ -10,7 +10,7 @@ build/
 .gradle/
 
 # Generated sources
-src/generated
+code/generated
 
 # OS specific
 .DS_Store
